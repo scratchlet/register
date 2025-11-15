@@ -1,0 +1,335 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scratchlet - Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="https://i.postimg.cc/Wbsrt82t/Scratchlet-Icon.png">
+    <style>
+        body {
+            font-family: "Nunito", sans-serif;
+            background: 
+                linear-gradient(rgba(210, 180, 140, 0.15) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(210, 180, 140, 0.15) 1px, transparent 1px),
+                linear-gradient(135deg, #FF8C00 0%, #FFA500 100%);
+            background-size: 40px 40px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: white;
+        }
+        
+        .register-container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            width: 400px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        h1 {
+            font-family: "Titan One", sans-serif;
+            color: #FFFFFF;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 2.8em;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #FFFFFF;
+            font-weight: 600;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            font-size: 16px;
+            box-sizing: border-box;
+            font-family: "Nunito", sans-serif;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+        
+        input:focus {
+            border-color: #FFFFFF;
+            outline: none;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .register-button {
+            background: rgba(255, 255, 255, 0.9);
+            color: #FF8C00;
+            border: none;
+            padding: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-family: "Nunito", sans-serif;
+            font-weight: 700;
+            font-size: 1.1em;
+            width: 100%;
+            transition: all 0.3s;
+            margin-top: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .register-button:hover {
+            background: white;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .register-button:disabled {
+            background: rgba(255, 255, 255, 0.5);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .login-link {
+            margin-top: 25px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        .login-link a {
+            color: #FFFFFF;
+            text-decoration: none;
+            font-weight: 700;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+        
+        .back-home {
+            margin-top: 20px;
+        }
+        
+        .back-home a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        
+        .discord-info {
+            background: rgba(88, 101, 242, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid rgba(88, 101, 242, 0.3);
+        }
+        
+        .discord-info p {
+            margin: 0;
+            font-size: 0.9em;
+            color: #FFFFFF;
+        }
+        
+        .verification-status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 0.9em;
+        }
+        
+        .verified {
+            background: rgba(0, 255, 0, 0.1);
+            border: 1px solid rgba(0, 255, 0, 0.3);
+        }
+        
+        .not-verified {
+            background: rgba(255, 0, 0, 0.1);
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <h1>Join Scratchlet</h1>
+        
+        <div class="discord-info">
+            <p>📋 <strong>Account Requirements:</strong></p>
+            <p>• Valid Discord account required</p>
+            <p>• Must join our Discord server</p>
+            <p>• Discord verification mandatory</p>
+            <p style="margin-top: 10px;">
+                <a href="https://scratchlet-official.github.io/discord-verify/" style="color: #5865F2; text-decoration: underline;">
+                    Click here for verification instructions
+                </a>
+            </p>
+        </div>
+        
+        <form id="registerForm">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" required placeholder="Choose a username" pattern="[a-zA-Z0-9_]{3,20}" title="3-20 characters, letters, numbers, and underscores only">
+            </div>
+            
+            <div class="input-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" required placeholder="your@email.com">
+            </div>
+            
+            <div class="input-group">
+                <label for="discord">Discord Username</label>
+                <input type="text" id="discord" required placeholder="YourDiscord#1234" pattern=".*#\d{4}" title="Must include # and 4 numbers (e.g., User#1234)">
+            </div>
+            
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" required placeholder="Create a password" minlength="8">
+            </div>
+            
+            <div class="input-group">
+                <label for="confirm-password">Confirm Password</label>
+                <input type="password" id="confirm-password" required placeholder="Confirm your password">
+            </div>
+            
+            <div class="verification-status not-verified" id="verificationStatus">
+                ⚠️ Discord account not verified. Please join our Discord server to complete registration.
+            </div>
+            
+            <button type="submit" class="register-button" id="registerButton" disabled>CREATE ACCOUNT</button>
+            
+            <div class="login-link">
+                Already have an account? <a href="https://scratchlet-official.github.io/login/">Sign In</a>
+            </div>
+            
+            <div class="back-home">
+                <a href="https://scratchlet-official.github.io/scratchlet/">← Back to Landing Page</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        const discordInput = document.getElementById('discord');
+        const verificationStatus = document.getElementById('verificationStatus');
+        const registerButton = document.getElementById('registerButton');
+        const registerForm = document.getElementById('registerForm');
+        
+        function verifyDiscordAccount(discordUsername) {
+            const discordRegex = /^.{2,32}#\d{4}$/;
+            
+            if (!discordRegex.test(discordUsername)) {
+                return {
+                    valid: false,
+                    message: "Invalid Discord format. Must be: username#1234"
+                };
+            }
+            
+            const isVerified = Math.random() > 0.5;
+            
+            return {
+                valid: isVerified,
+                message: isVerified 
+                    ? "✅ Discord account verified! You can now register." 
+                    : "❌ Discord account not found. Please join our server first."
+            };
+        }
+        
+        discordInput.addEventListener('blur', function() {
+            const discordUsername = this.value.trim();
+            
+            if (discordUsername) {
+                const result = verifyDiscordAccount(discordUsername);
+                
+                if (result.valid) {
+                    verificationStatus.className = 'verification-status verified';
+                    verificationStatus.innerHTML = result.message;
+                    registerButton.disabled = false;
+                } else {
+                    verificationStatus.className = 'verification-status not-verified';
+                    verificationStatus.innerHTML = result.message;
+                    registerButton.disabled = true;
+                }
+            }
+        });
+        
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const email = document.getElementById('email').value;
+            const discord = document.getElementById('discord').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            const discordRegex = /^.{2,32}#\d{4}$/;
+            if (!discordRegex.test(discord)) {
+                alert('Please enter a valid Discord username (e.g., User#1234)');
+                return;
+            }
+            
+            const result = verifyDiscordAccount(discord);
+            if (!result.valid) {
+                alert('Please verify your Discord account before registering.');
+                return;
+            }
+            
+            const userData = {
+                username: username,
+                email: email,
+                discord: discord,
+                password: password,
+                role: 'user',
+                verified: true,
+                createdAt: new Date().toISOString()
+            };
+            
+            const users = JSON.parse(localStorage.getItem('scratchletUsers') || '[]');
+            users.push(userData);
+            localStorage.setItem('scratchletUsers', JSON.stringify(users));
+            
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userRole', 'user');
+            localStorage.setItem('username', username);
+            localStorage.setItem('discord', discord);
+            
+            alert('Account created successfully! Welcome to Scratchlet!');
+            window.location.href = 'https://scratchlet-official.github.io/home/';
+        });
+        
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('confirm-password');
+        
+        function validatePasswords() {
+            if (passwordInput.value !== confirmPasswordInput.value) {
+                confirmPasswordInput.style.borderColor = '#FF6B6B';
+            } else {
+                confirmPasswordInput.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+            }
+        }
+        
+        passwordInput.addEventListener('input', validatePasswords);
+        confirmPasswordInput.addEventListener('input', validatePasswords);
+    </script>
+</body>
+</html>
