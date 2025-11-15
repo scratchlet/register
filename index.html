@@ -195,7 +195,7 @@
             
             <div class="input-group">
                 <label for="discord">Discord Username</label>
-                <input type="text" id="discord" required placeholder="YourDiscord#1234" pattern=".*#\d{4}" title="Must include # and 4 numbers (e.g., User#1234)">
+                <input type="text" id="discord" required placeholder="(Discord Username)#1234" pattern=".*#\d{4}" title="Must include # and 4 numbers (e.g., User#1234)">
             </div>
             
             <div class="input-group">
@@ -215,11 +215,11 @@
             <button type="submit" class="register-button" id="registerButton" disabled>CREATE ACCOUNT</button>
             
             <div class="login-link">
-                Already have an account? <a href="https://scratchlet-official.github.io/login/">Sign In</a>
+                Already have an account? <a href="https://scratchlet.github.io/login/">Sign In</a>
             </div>
             
             <div class="back-home">
-                <a href="https://scratchlet-official.github.io/scratchlet/">← Back to Landing Page</a>
+                <a href="https://scratchlet.github.io/site/">← Back to Landing Page</a>
             </div>
         </form>
     </div>
@@ -314,7 +314,7 @@
             localStorage.setItem('discord', discord);
             
             alert('Account created successfully! Welcome to Scratchlet!');
-            window.location.href = 'https://scratchlet-official.github.io/home/';
+            window.location.href = 'https://scratchlet.github.io/home/';
         });
         
         const passwordInput = document.getElementById('password');
