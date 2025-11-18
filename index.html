@@ -1,13 +1,10 @@
 
-<!DOCTYPE html>
-<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scratchlet - Register</title>
-    <link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="https://i.postimg.cc/Wbsrt82t/Scratchlet-Icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Titan+One&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&amp;display=swap" rel="stylesheet">
     <style>
         body {
             font-family: "Nunito", sans-serif;
@@ -134,196 +131,185 @@
             font-size: 0.9em;
         }
         
-        .discord-info {
-            background: rgba(88, 101, 242, 0.2);
-            padding: 15px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border: 1px solid rgba(88, 101, 242, 0.3);
-        }
         
-        .discord-info p {
-            margin: 0;
-            font-size: 0.9em;
-            color: #FFFFFF;
-        }
         
-        .verification-status {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 8px;
-            font-size: 0.9em;
-        }
-        
-        .verified {
-            background: rgba(0, 255, 0, 0.1);
-            border: 1px solid rgba(0, 255, 0, 0.3);
-        }
-        
-        .not-verified {
-            background: rgba(255, 0, 0, 0.1);
-            border: 1px solid rgba(255, 0, 0, 0.3);
-        }
+     
     </style>
 </head>
+
 <body>
+
+<div id="welcome-message" style="
+    font-family: 'Nunito', sans-serif;
+    font-weight: 700;
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.4);
+    font-size: 1.5em;
+    margin-bottom: 20px;
+"></div>
+
+
+
     <div class="register-container">
         <h1>Join Scratchlet</h1>
         
-        <div class="discord-info">
-            <p>📋 <strong>Account Requirements:</strong></p>
-            <p>• Valid Discord account required</p>
-            <p>• Must join our Discord server</p>
-        </div>
+       
         
         <form id="registerForm">
             <div class="input-group">
                 <label for="username">Username</label>
-                <input type="text" id="username" required placeholder="Choose a username" pattern="[a-zA-Z0-9_]{3,20}" title="3-20 characters, letters, numbers, and underscores only">
+                <input type="text" id="username" required="" placeholder="Choose a username" pattern="[a-zA-Z0-9_]{3,20}" title="3-20 characters, letters, numbers, and underscores only">
             </div>
             
             <div class="input-group">
                 <label for="email">Email Address</label>
-                <input type="email" id="email" required placeholder="your@email.com">
+                <input type="email" id="email" required="" placeholder="your@email.com">
             </div>
             
-            <div class="input-group">
-                <label for="discord">Discord Username</label>
-                <input type="text" id="discord" required placeholder="(Discord Username)#1234" pattern=".*#\d{4}" title="Must include # and 4 numbers (e.g., User#1234)">
-            </div>
+           
             
             <div class="input-group">
                 <label for="password">Password</label>
-                <input type="password" id="password" required placeholder="Create a password" minlength="8">
+                <input type="password" id="password" required="" placeholder="Create a password" minlength="8">
             </div>
             
             <div class="input-group">
                 <label for="confirm-password">Confirm Password</label>
-                <input type="password" id="confirm-password" required placeholder="Confirm your password">
+                <input type="password" id="confirm-password" required="" placeholder="Confirm your password">
             </div>
             
-            <div class="verification-status not-verified" id="verificationStatus">
-                ⚠️ Discord account not verified. Please join our Discord server to complete registration.
-            </div>
-            
-            <button type="submit" class="register-button" id="registerButton" disabled>CREATE ACCOUNT</button>
+
+            <button type="submit" class="register-button" id="registerButton" enabled="">CREATE ACCOUNT</button>
             
             <div class="login-link">
-                Already have an account? <a href="https://scratchlet.github.io/login/">Sign In</a>
+                Already have an account? <a href="https://scratchlet-app.neocities.org/login">Sign In</a>
             </div>
             
             <div class="back-home">
-                <a href="https://scratchlet.github.io/site/">← Back to Landing Page</a>
+                <a href="https://scratchlet-app.neocities.org">← Back to Landing Page</a>
             </div>
         </form>
     </div>
 
     <script>
-        const discordInput = document.getElementById('discord');
-        const verificationStatus = document.getElementById('verificationStatus');
-        const registerButton = document.getElementById('registerButton');
-        const registerForm = document.getElementById('registerForm');
-        
-        function verifyDiscordAccount(discordUsername) {
-            const discordRegex = /^.{2,32}#\d{4}$/;
-            
-            if (!discordRegex.test(discordUsername)) {
-                return {
-                    valid: false,
-                    message: "Invalid Discord format. Must be: username#1234"
-                };
-            }
-            
-            const isVerified = Math.random() > 0.5;
-            
-            return {
-                valid: isVerified,
-                message: isVerified 
-                    ? "✅ Discord account verified! You can now register." 
-                    : "❌ Discord account not found. Please join our server first."
-            };
-        }
-        
-        discordInput.addEventListener('blur', function() {
-            const discordUsername = this.value.trim();
-            
-            if (discordUsername) {
-                const result = verifyDiscordAccount(discordUsername);
-                
-                if (result.valid) {
-                    verificationStatus.className = 'verification-status verified';
-                    verificationStatus.innerHTML = result.message;
-                    registerButton.disabled = false;
-                } else {
-                    verificationStatus.className = 'verification-status not-verified';
-                    verificationStatus.innerHTML = result.message;
-                    registerButton.disabled = true;
-                }
-            }
-        });
-        
-        registerForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            const discord = document.getElementById('discord').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirm-password').value;
-            
-            if (password !== confirmPassword) {
-                alert('Passwords do not match!');
-                return;
-            }
-            
-            const discordRegex = /^.{2,32}#\d{4}$/;
-            if (!discordRegex.test(discord)) {
-                alert('Please enter a valid Discord username (e.g., User#1234)');
-                return;
-            }
-            
-            const result = verifyDiscordAccount(discord);
-            if (!result.valid) {
-                alert('Please verify your Discord account before registering.');
-                return;
-            }
-            
-            const userData = {
-                username: username,
-                email: email,
-                discord: discord,
-                password: password,
-                role: 'user',
-                verified: true,
-                createdAt: new Date().toISOString()
-            };
-            
-            const users = JSON.parse(localStorage.getItem('scratchletUsers') || '[]');
-            users.push(userData);
-            localStorage.setItem('scratchletUsers', JSON.stringify(users));
-            
-            localStorage.setItem('isLoggedIn', 'true');
-            localStorage.setItem('userRole', 'user');
-            localStorage.setItem('username', username);
-            localStorage.setItem('discord', discord);
-            
-            alert('Account created successfully! Welcome to Scratchlet!');
-            window.location.href = 'https://scratchlet.github.io/home/';
-        });
-        
-        const passwordInput = document.getElementById('password');
-        const confirmPasswordInput = document.getElementById('confirm-password');
-        
-        function validatePasswords() {
-            if (passwordInput.value !== confirmPasswordInput.value) {
-                confirmPasswordInput.style.borderColor = '#FF6B6B';
-            } else {
-                confirmPasswordInput.style.borderColor = 'rgba(255, 255, 255, 0.3)';
-            }
-        }
-        
-        passwordInput.addEventListener('input', validatePasswords);
-        confirmPasswordInput.addEventListener('input', validatePasswords);
-    </script>
+        document.addEventListener('DOMContentLoaded', () => {
+  const registerForm = document.getElementById('registerForm');
+  const passwordInput = document.getElementById('password');
+  const confirmPasswordInput = document.getElementById('confirm-password');
+
+  registerForm.addEventListener('submit', (e) => {
+    e.preventDefault(); // stop form from submitting normally
+    e.stopPropagation(); // stop other handlers
+
+    const username = document.getElementById('username').value.trim();
+    const email = document.getElementById('email').value.trim();
+    const password = passwordInput.value;
+    const confirmPassword = confirmPasswordInput.value;
+
+    if (password !== confirmPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
+
+    const users = JSON.parse(localStorage.getItem('scratchletUsers') || '[]');
+
+    const existingUser = users.find(u => u.username === username || u.email === email);
+    if (existingUser) {
+      alert('That username or email is already registered!');
+      return;
+    }
+
+    const userData = {
+      username,
+      email,
+      password,
+      role: 'user',
+      verified: true,
+      createdAt: new Date().toISOString()
+    };
+
+    users.push(userData);
+    localStorage.setItem('scratchletUsers', JSON.stringify(users));
+
+    // Log user in immediately
+    localStorage.setItem('isLoggedIn', 'true');
+    localStorage.setItem('currentUser', username);
+    localStorage.setItem('userRole', 'user');
+
+    alert(`Welcome to Scratchlet, ${username}!`);
+    
+    // Use setTimeout to ensure alert finishes before redirect
+    setTimeout(() => {
+      window.location.href = 'https://scratchlet-app.neocities.org/home';
+    }, 100);
+  });
+
+  // Password visual validation
+  function validatePasswords() {
+    confirmPasswordInput.style.borderColor =
+      passwordInput.value !== confirmPasswordInput.value ? '#FF6B6B' : 'rgba(255, 255, 255, 0.3)';
+  }
+
+  passwordInput.addEventListener('input', validatePasswords);
+  confirmPasswordInput.addEventListener('input', validatePasswords);
+});
+
+</script>
+ 
+     <!-- Firebase SDKs -->
+<!-- Firebase SDKs -->
+<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.0.1/firebase-firestore.js"></script>
+
+<script>
+const firebaseConfig = {
+  apiKey: "AIzaSyBTNhlnJX-U4n-tbAhxCKD_ed-wYR1POAA",
+  authDomain: "scratchlet-app.firebaseapp.com",
+  projectId: "scratchlet-app",
+  storageBucket: "scratchlet-app.appspot.com",
+  messagingSenderId: "580877167208",
+  appId: "1:580877167208:web:ee2411e9e385c1228fa9dd",
+  measurementId: "G-Q93GNX3FNQ"
+};
+
+// Initialize Firebase
+const app = firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
+
+document.getElementById("registerButton").addEventListener("click", async (e) => {
+  e.preventDefault(); // prevent default form submission
+
+  const username = document.getElementById("username").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const password = document.getElementById("password").value;
+  const confirmPassword = document.getElementById("confirm-password").value;
+
+  if (password !== confirmPassword) {
+    alert("Passwords do not match!");
+    return;
+  }
+
+  try {
+    // Create user in Firebase Auth
+    const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+    const user = userCredential.user;
+
+    // Save extra user info in Firestore
+    await db.collection("users").doc(user.uid).set({
+      username: username,
+      email: email,
+      createdAt: new Date(),
+      tokens: 0,
+      blooks: []
+    });
+
+    alert(`Welcome to Scratchlet, ${username}!`);
+    window.location.href = "https://scratchlet-app.neocities.org/home";
+  } catch (error) {
+    alert(error.message);
+  }
+});
+</script>
 </body>
-</html>
